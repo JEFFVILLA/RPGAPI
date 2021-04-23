@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using netCoreApi.Dtos.Character;
 using netCoreApi.Models;
 
 namespace netCoreApi.Services.CharacterServices
@@ -11,20 +13,33 @@ namespace netCoreApi.Services.CharacterServices
             new Character(),
             new Character {Id = 1 , Name = "Jeffri", Class = Rpgclass.Knigth}
         };
-        public async Task<List<Character>> AddCharacter(Character newCharacter)
+
+        private readonly IMapper _mapper;
+
+        public CharacterService(IMapper mapper)
         {
-            characters.Add(newCharacter);
-            return characters;
+            _mapper = mapper;
+        }
+        public async Task<ServiceResponse<List<AddCharacterDto>>> AddCharacter(AddCharacterDto newCharacter)
+        {
+            ServiceResponse<List<AddCharacterDto>> serviceResponse = new ServiceResponse<List<AddCharacterDto>>();
+            characters.Add(_mapper.Map<AddCharacterDto>(newCharacter));
+            serviceResponse.Data = (characters.Select(c => _mapper.Map<AddCharacterDto>(c))).ToList();
+            return serviceResponse;
         }
 
-        public async Task<List<Character>> GetAllCharacters()
+        public async Task<ServiceResponse<List<GetCharacterDto>>> GetAllCharacters()
         {
-           return characters;
+         ServiceResponse<List<GetCharacterDto>> serviceResponse = new ServiceResponse<List<GetCharacterDto>>();
+         serviceResponse.Data = characters;
+           return serviceResponse;
         }
 
-        public async Task<Character> GetCharacterById(int id)
+        public async Task<ServiceResponse<GetCharacterDto>> GetCharacterById(int id)
         {
-             return characters.FirstOrDefault(c => c.Id == id);
+            ServiceResponse<GetCharacterDto> serviceResponse = new ServiceResponse<GetCharacterDto>();
+            serviceResponse.Data = _mapper.Map<GetCharacterDto>(characters.FirstOrDefault(c => c.Id == id));
+             return serviceResponse;
         }
     }
 }
