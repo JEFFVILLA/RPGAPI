@@ -9,5 +9,6 @@ namespace netCoreApi.Models
         public int Defense { get; set; } = 10;
         public int Intelligence { get; set; } = 10;
         public Rpgclass Class { get; set; } = Rpgclass.Cleric;
+        public User User {get; set;}
     }
 }

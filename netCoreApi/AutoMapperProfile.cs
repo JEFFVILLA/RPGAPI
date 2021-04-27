@@ -9,7 +9,7 @@ namespace netCoreApi
         public AutoMapperProfile()
         {
             CreateMap<Character, GetCharacterDto>();
-             CreateMap<AddCharacterDto, Character>();
+            CreateMap<AddCharacterDto, Character>();
         }
     }
 }
