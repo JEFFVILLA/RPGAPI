@@ -1,5 +1,6 @@
 using AutoMapper;
 using netCoreApi.Dtos.Character;
+using netCoreApi.Dtos.Weapon;
 using netCoreApi.Models;
 
 namespace netCoreApi
@@ -10,6 +11,7 @@ namespace netCoreApi
         {
             CreateMap<Character, GetCharacterDto>();
             CreateMap<AddCharacterDto, Character>();
+            CreateMap<Weapon, GetWeaponDto>();
         }
     }
 }
