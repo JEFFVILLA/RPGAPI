@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace netCoreApi.Models
 {
     public class Character
@@ -11,5 +13,10 @@ namespace netCoreApi.Models
         public Rpgclass Class { get; set; } = Rpgclass.Cleric;
         public User User {get; set;}
         public Weapon Weapon {get; set;}
+        public List<CharacterSkill> CharacterSkills {get; set;}
+        public int Figths {get; set;}
+        public int Victories {get;set;}
+        public int Defeats {get; set;}
+
     }
 }

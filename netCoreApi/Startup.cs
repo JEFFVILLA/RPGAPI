@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using netCoreApi.Data;
 using netCoreApi.Services.CharacterServices;
+using netCoreApi.Services.CharacterSkillService;
+using netCoreApi.Services.FightService;
 using netCoreApi.Services.WeaponService;
 using System;
 using System.Collections.Generic;
@@ -50,6 +52,8 @@ namespace netCoreApi
             });
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IWeaponService, WeaponService>();
+            services.AddScoped<ICharacterSkillService, CharacterSkillService>();
+            services.AddScoped<IFightService, FightService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
